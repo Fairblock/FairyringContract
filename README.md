@@ -4,7 +4,7 @@ Fairyring Contract is an EVM smart contract written in Solidity that allows `fai
 
 Fairyrng Contract stores encryption keys & decryption keys relayed by `fairyport` from `Fairyring`, developer can query the latest decryption key and encryption key from this smart contract. The contract also included a function for querying a verifiable randomness that's calculated from the decryption key.
 
-If the target EVM chain contains the `decrypt` pre-compiles from Fairblock, this contract can also verify the randomness on-chain. (Verifying randomness is NOT yet implemented)
+If the target EVM chain contains the `decrypt` pre-compiles from Fairblock, this contract can also verify the randomness on-chain.
 
 We also created an example contract that utilize the Fairyring Contract and a script that spin up a local development environment using `anvil` from `foundry`, The script spin up a local EVM chain, deploy the Fairyring Contract and the example number guessing contract, and submit decryption key to the contract every block.
 
