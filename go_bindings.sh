@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat ./out/FairyringContract.sol/FairyringContract.json | jq '.abi' > fairyringContract.json
-abigen --abi fairyringContract.json --pkg contract --out fairyring_contract.go --type FairyringContract
+cat ./out/Gateway.sol/Gateway.json | jq '.abi' > gateway.json
+abigen --abi gateway.json --pkg contract --out gateway.go --type Gateway
 
-rm fairyringContract.json
+rm gateway.json

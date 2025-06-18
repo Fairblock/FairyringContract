@@ -2,17 +2,17 @@
 pragma solidity ^0.8.25;
 
 import {Script, console} from "forge-std/Script.sol";
-import {FairyringContract} from "../src/FairyringContract.sol";
+import {Gateway} from "../src/Gateway.sol";
 
 
-contract FairyringContractScript is Script {
+contract GatewayScript is Script {
     function setUp() public {}
 
     function run() public {
         vm.startBroadcast();
 
-        FairyringContract fc = new FairyringContract();
-        console.log("FairyringContract Deployed at:");
+        Gateway fc = new Gateway();
+        console.log("Gateway Deployed at:");
         console.logAddress(address(fc));
 
         vm.stopBroadcast();
