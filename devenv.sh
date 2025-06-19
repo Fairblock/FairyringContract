@@ -11,7 +11,7 @@ sleep 1
 pkey=$(cat anvil_config.json | jq -r '.private_keys[0]')
 addr=$(cast wallet address --private-key $pkey)
 
-deploy_out=$(forge create src/FairyringContract.sol:FairyringContract --private-key $pkey --json | jq)
+deploy_out=$(forge create src/Gateway.sol:Gateway --private-key $pkey --json | jq)
 # Deploy contract
 frc=$(echo $deploy_out | jq -r '.deployedTo')
 

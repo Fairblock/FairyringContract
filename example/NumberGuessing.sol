@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.25;
 
-import {IFairyringContract} from "../src/IFairyringContract.sol";
+import {IGateway} from "../src/IGateway.sol";
 import {Context} from "@openzeppelin/contracts/utils/Context.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
@@ -20,14 +20,14 @@ contract NumberGuessing is Context, Ownable {
     mapping(uint256 => mapping(uint256 => address[])) public roundGussess;
 
     uint256 public currentRoundID = 1;
-    IFairyringContract public fairyringContract;
+    IGateway public gateway;
 
     constructor(
         uint256 _roundDuration,
-        IFairyringContract _fairyringContract
+        IGateway _gateway
     ) Ownable(_msgSender()) {
         roundDuration = _roundDuration;
-        fairyringContract = _fairyringContract;
+        gateway = _gateway;
     }
 
     function startNewRound() external onlyOwner {
@@ -48,7 +48,7 @@ contract NumberGuessing is Context, Ownable {
         require(!currentRound.ended, "The round has already ended");
         require(currentRound.endAtBlock <= block.number, "The round is still ongoing");
 
-        currentRound.winningNumber = uint256(fairyringContract.latestRandomnessHashOnly()) % 100;
+        currentRound.winningNumber = uint256(gateway.latestRandomnessHashOnly()) % 100;
 
         currentRound.ended = true;
         currentRound.winners = roundGussess[currentRoundID][currentRound.winningNumber];
